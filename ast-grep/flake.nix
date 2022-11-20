@@ -24,6 +24,8 @@
             description = "A fast and easy tool for code searching, linting, rewriting at large scale.";
             homepage = "https://github.com/ast-grep/ast-grep";
           };
+          # Rename the binary since the default conflicts with sg(1)
+          # https://linux.die.net/man/1/sg
           postInstall = ''
             mv $out/bin/sg $out/bin/ast-grep
           '';
