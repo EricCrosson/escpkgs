@@ -24,6 +24,9 @@
             description = "A fast and easy tool for code searching, linting, rewriting at large scale.";
             homepage = "https://github.com/ast-grep/ast-grep";
           };
+          postInstall = ''
+            mv $out/bin/sg $out/bin/ast-grep
+          '';
         };
       in {
         packages.default = ast-grep;
