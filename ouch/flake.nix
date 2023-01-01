@@ -30,6 +30,17 @@
             description = "Painless compression and decompression for your terminal";
             homepage = "https://github.com/ouch-org/ouch";
           };
+
+          nativeBuildInputs = with pkgs; [ help2man installShellFiles ];
+
+          OUCH_ARTIFACTS_FOLDER = "target/${pkgs.rust.toRustTargetSpec pkgs.stdenv.hostPlatform}/release/build/artifacts";
+
+          postInstall = ''
+            help2man $out/bin/ouch > ouch.1
+            installManPage ouch.1
+            completions=($releaseDir/build/artifacts)
+            installShellCompletion $completions/ouch.{bash,fish} --zsh $completions/_ouch
+          '';
         };
       in {
         packages.default = ouch;
