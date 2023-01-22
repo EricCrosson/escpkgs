@@ -31,8 +31,6 @@
         };
       in {
         devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [
-          ];
           shellHook = checks.pre-commit-check.shellHook;
         };
       }
